@@ -1,34 +1,34 @@
 from typing import Dict, List, Tuple
 import re
 
-def parse_chat(file_path: str) -> Dict[str, List[str]]:
-        """
-        Parse the chat  file and separate messages by speaker.
-        
-        Args:
-            file_path: Path to the chat .txt file
-            
-        Returns:
-            Dictionary with keys 'User' and 'AI' containing lists of their messages
-        """
-        chat_data = {'User': [], 'AI': []}
-        
-        with open(file_path, 'r', encoding='utf-8') as file:
-            for line in file:
-                line = line.strip()
-                if not line:
-                    continue
-                    
-                # Match speaker and message
-                match = re.match(r'^(User|AI):\s*(.*)', line, re.IGNORECASE)
 
-                if match:
-                    speaker = match.group(1)
-                
-                    message = match.group(2).strip()
-                    if message:
-                        chat_data[speaker].append(message)
-        
-        return chat_data
+def parse_chat(text):
+    lines = text.splitlines()
+    result = []
+    current_speaker = None
+    current_message = []
+
+    for line in lines:
+        if ':' in line:
+            speaker, message_part = line.split(':', 1)
+            speaker = speaker.strip()
+            message_part = message_part.strip()
+
+            # Save previous message
+            if current_speaker is not None:
+                result.append((current_speaker, ' '.join(current_message)))
+
+            # Start new message
+            current_speaker = speaker
+            current_message = [message_part]
+        else:
+            # Continuation of current message
+            current_message.append(line.strip())
+
+    # Append the last message
+    if current_speaker and current_message:
+        result.append((current_speaker, ' '.join(current_message)))
+
+    return result
 
 
