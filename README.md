@@ -23,8 +23,8 @@ This will create a directory named `venv` containing the virtual environment.
 
 - **Windows (Command Prompt):**
 
-  ```cmd
-  venv\Scripts\activate
+  ```bash
+  source venv\Scripts\activate
   ```
 
 - **macOS & Linux:**
