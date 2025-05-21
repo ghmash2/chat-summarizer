@@ -11,7 +11,7 @@ Make sure you have the following installed:
 
 ### 1. Create a Virtual Environment
 
-Navigate to backend and run:
+Navigate to directory:
 
 ```bash
 python -m venv venv  # Use python3 if needed
@@ -48,7 +48,11 @@ pip install -r requirements.txt
 Once the virtual environment is activated, run your Python script:
 
 ```bash
-python main.py
+python main.py file/folder_path
+```
+Example(Single File):
+```bash
+python main.py data/sample.txt
 ```
 
 ---
