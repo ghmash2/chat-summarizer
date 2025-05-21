@@ -54,11 +54,19 @@ Example(Single File):
 ```bash
 python main.py data/sample.txt
 ```
-
+Example(Folder):
+```bash
+python main.py data/
+```
 ---
 
 Now you are ready to run the Text-Summarizer 🚀
 
 ## Output Screenshot
+For Single File:
 
 ![Screenshot](images/result.png)
+
+For Folder:
+
+![Screenshot](images/result2.png)
